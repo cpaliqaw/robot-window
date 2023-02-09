@@ -1,8 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import NavBar from "./panels/NavBar";
-import MessageBoard from "./panels/MessageBoard";
-import AllPosts from "./panels/AllPosts";
-import PostView from "./panels/PostView";
+import Summary from "./panels/Summary";
 import Welcome from "./panels/Welcome";
 import { ThemeProvider } from "@emotion/react";
 import { Container, createTheme, CssBaseline } from "@mui/material";
@@ -14,17 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <MessageBoard />,
-        children: [
-          {
-            path: ":pageNumber",
-            element: <AllPosts />,
-          },
-          {
-            path: "post/:postId",
-            element: <PostView />,
-          },
-        ],
+        element: <Summary />,
       },
       {
         path: "welcome",
@@ -33,6 +21,11 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+const sections = [
+  { title: 'Localization', url: '#' },
+  { title: 'Tasks', url: '#' },
+];
 
 const theme = createTheme();
 
@@ -52,7 +45,7 @@ export default App;
 function Layout() {
     return (
       <>
-        <NavBar />
+        <NavBar title="Robot Window" sections={sections} />
         <Outlet />
       </>
     );
