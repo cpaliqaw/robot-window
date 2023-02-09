@@ -14,11 +14,20 @@ yarn add -D supabase
 Then I ran (second command failed without sudo on Ubuntu 20)
 ```
 yarn supabase init
+```
+
+## Installation
+
+sudo yarn supabase migration new starting-ddl
+
+## Running
+
+start
+```
 sudo yarn supabase start
 ```
-to stop
+stop
 ```
 sudo yarn supabase stop
 ```
 
-## Installation
