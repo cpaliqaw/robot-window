@@ -20,6 +20,7 @@ sudo yarn supabase migration new starting-ddl
 
 ## Generate types
 
+For local db
 ```
 sudo yarn supabase gen types typescript --local > ./src/database.types.ts
 ```
