@@ -18,6 +18,12 @@ Here is an excerpt
 
 sudo yarn supabase migration new starting-ddl
 
+## Generate types
+
+```
+sudo yarn supabase gen types typescript --local > ./src/database.types.ts
+```
+
 ## Running
 
 start
