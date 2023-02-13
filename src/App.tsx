@@ -7,6 +7,7 @@ import NavBar from "./panels/NavBar";
 import Summary from "./panels/Summary";
 import Welcome from "./panels/Welcome";
 import Layout from "./panels/Layout";
+import RobotWindowRouter from "./RobotWindowRouter";
 
 const theme = createTheme();
 
@@ -15,7 +16,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        
+        <RobotWindowRouter />
       </Container>
     </ThemeProvider>
   );
