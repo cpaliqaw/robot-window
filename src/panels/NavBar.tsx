@@ -1,11 +1,13 @@
+import { Link as RouterLink } from "react-router-dom";
+import { useContext } from 'react';
+
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
-import { Link as RouterLink } from "react-router-dom";
+
+import { UserContext } from '../App';
 
 interface NavBarProps {
     sections: ReadonlyArray<{
@@ -17,6 +19,7 @@ interface NavBarProps {
 
 export default function NavBar(props: NavBarProps) {
     const { sections, title } = props;
+    const {session} = useContext(UserContext);
     return (
         <>
             <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -32,7 +35,7 @@ export default function NavBar(props: NavBarProps) {
                     {title}
                 </Typography>
                 <Button variant="outlined" size="small">
-                    Sign out
+                    Sign { session?.user ? "out" : "in"}
                 </Button>
             </Toolbar>
             <Toolbar

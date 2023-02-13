@@ -36,3 +36,14 @@ stop
 sudo yarn supabase stop
 ```
 
+## Testing
+
+Test
+```
+yarn playwright test
+```
+
+View results
+```
+yarn playwright show-report
+```
