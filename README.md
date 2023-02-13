@@ -18,6 +18,17 @@ Here is an excerpt
 
 sudo yarn supabase migration new starting-ddl
 
+The following settings are necessary for allowing email sign in, but not sign up
+```
+[auth]
+...
+enable_signup = false
+
+[auth.email]
+# Allow/disallow new user signups via email to your project.
+enable_signup = true
+```
+
 ## Generate types
 
 For local db
