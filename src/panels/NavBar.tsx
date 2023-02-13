@@ -19,7 +19,7 @@ interface NavBarProps {
 
 export default function NavBar(props: NavBarProps) {
     const { sections, title } = props;
-    const {session} = useContext(UserContext);
+    const { session } = useContext(UserContext);
     return (
         <>
             <Toolbar sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -34,9 +34,14 @@ export default function NavBar(props: NavBarProps) {
                 >
                     {title}
                 </Typography>
-                <Button variant="outlined" size="small">
-                    Sign { session?.user ? "out" : "in"}
-                </Button>
+                {
+                    session?.user ?
+                        <Button variant="outlined" size="small">
+                            Sign out
+                        </Button>
+                        :
+                        <Typography>Your name here</Typography>
+                }
             </Toolbar>
             <Toolbar
                 component="nav"
@@ -58,17 +63,4 @@ export default function NavBar(props: NavBarProps) {
             </Toolbar>
         </>
     );
-    // <>
-    //   <nav className="nav-bar">
-    //     <RouterLink to="/">Home</RouterLink>
-
-    //     <ul>
-    //       <li>
-    //         <Link component={RouterLink} to="/1">
-    //           message board
-    //         </Link>
-    //       </li>
-    //     </ul>
-    //   </nav>
-    // </>
 }
