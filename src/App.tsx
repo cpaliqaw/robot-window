@@ -1,28 +1,11 @@
 import { createContext } from "react";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@emotion/react";
 import { Container, createTheme, CssBaseline } from "@mui/material";
 import { SupashipUserInfo, useSession } from "./supa/use-session";
 import NavBar from "./panels/NavBar";
 import Summary from "./panels/Summary";
 import Welcome from "./panels/Welcome";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "",
-        element: <Summary />,
-      },
-      {
-        path: "welcome",
-        element: <Welcome />,
-      },
-    ],
-  },
-]);
 
 const sections = [
   { title: 'Localization', url: '#' },
@@ -36,7 +19,14 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
-        <RouterProvider router={router} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout/>}>
+              <Route index element={<Summary />}/>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+        {/* <RouterProvider router={router} /> */}
       </Container>
     </ThemeProvider>
   );
