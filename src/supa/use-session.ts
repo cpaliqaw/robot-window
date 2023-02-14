@@ -43,15 +43,32 @@ export function useSession(): SupashipUserInfo {
     }
   }, [userInfo.session]);
 
+  useEffect(() => {
+    supabaseClient.auth.onAuthStateChange(async (event, session) => {
+      if (event == "PASSWORD_RECOVERY") {
+        const newPassword = prompt("What would you like your new password to be?");
+        if (!newPassword) {
+          alert("There was an error updating your password.");
+          return;
+        }
+        const { data, error } = await supabaseClient.auth
+          .updateUser({ password: newPassword })
+ 
+        if (data) alert("Password updated successfully!")
+        if (error) alert("There was an error updating your password.")
+      }
+    })
+  }, [])
+
   async function listenToUserProfileChanges(userId: string) {
-    const { data } = await supaClient
+    const { data } = await supabaseClient
       .from("user_profiles")
       .select("*")
       .filter("user_id", "eq", userId);
     if (data?.[0]) {
       setUserInfo({ ...userInfo, profile: data?.[0] });
     }
-    return supaClient
+    return supabaseClient
       .channel(`public:user_profiles`)
       .on(
         "postgres_changes",
